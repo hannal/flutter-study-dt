@@ -12,16 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'DT App',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: MyHomePage(),
-      )
-    );
+        create: (context) => MyAppState(),
+        child: MaterialApp(
+          title: 'DT App',
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          ),
+          home: MyHomePage(),
+        ));
   }
 }
 
@@ -35,20 +34,26 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     return Scaffold(
-      body: Column(
-        children: [
-          Text('A random idea2'),
-          Text(appState.current.asLowerCase),
-          ElevatedButton(onPressed: () {
-            appState.getNext();
-          }, child: Text('Next'))
-        ],
-      )
-    );
+        body: Column(
+      children: [
+        Text('A random idea2'),
+        Text(
+          appState.current.asLowerCase,
+          key: Key('app-state-text'),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              appState.getNext();
+            },
+            child: Text('Next'))
+      ],
+    ));
   }
 }

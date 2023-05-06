@@ -8,7 +8,7 @@ void main() {
     await tester.pumpWidget(MyApp());
 
     final btnNextFinder = find.text('Next');
-    final labelWordFinder = find.byKey(Key('label-word'));
+    final labelWordFinder = find.byKey(Key('app-state-text'));
     expect(btnNextFinder, findsOneWidget);
     expect(labelWordFinder, findsOneWidget);
 

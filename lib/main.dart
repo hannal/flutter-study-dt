@@ -41,19 +41,20 @@ class MyHomePage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 
     return Scaffold(
-        body: Column(
-      children: [
-        Text('A random idea2'),
-        Text(
-          appState.current.asLowerCase,
-          key: Key('app-state-text'),
-        ),
-        ElevatedButton(
-            onPressed: () {
-              appState.getNext();
-            },
-            child: Text('Next'))
-      ],
-    ));
+      body: Column(
+        children: [
+          Text('A random idea'),
+          Text(
+            appState.current.asLowerCase,
+            key: Key('app-state-text'),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                appState.getNext();
+              },
+              child: Text('Next'))
+        ],
+      ),
+    );
   }
 }

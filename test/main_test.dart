@@ -1,22 +1,24 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 
 import 'package:dt_app/main.dart';
-import 'package:mockito/mockito.dart';
 
-import 'main_test.mocks.dart';
-
-@GenerateMocks([MyAppState])
 void main() {
-  testWidgets('main app has a title', (widgetTester) async {
-    await widgetTester.pumpWidget(MyApp());
+  testWidgets('press Next button', (tester) async {
+    await tester.pumpWidget(MyApp());
 
-    final titleFinder = find.text('A random idea2');
-    final buttonLabelFinder = find.text('Next');
+    final btnNextFinder = find.text('Next');
+    final labelWordFinder = find.byKey(Key('label-word'));
+    expect(btnNextFinder, findsOneWidget);
+    expect(labelWordFinder, findsOneWidget);
 
-    expect(titleFinder, findsOneWidget);
-    expect(buttonLabelFinder, findsWidgets);
+    Text prevWordText = (labelWordFinder.evaluate().first.widget as Text);
+
+    await tester.tap(btnNextFinder);
+    await tester.pump();
+
+    Text currWordText = (labelWordFinder.evaluate().first.widget as Text);
+
+    expect(prevWordText.data, isNot(equals(currWordText.data)));
   });
 }
